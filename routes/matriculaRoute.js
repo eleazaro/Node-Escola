@@ -73,6 +73,7 @@ router.post("/", (req, resp) => {
             Matricula.create(key).then(c => {
                 resp.status(200).json({
                     statusCode: 200,
+                    data: req.body
                 });
             });
         }
