@@ -90,7 +90,23 @@ router.post("/", (req, resp) => {
 });
 
 router.delete("/:id", (req, resp) => {
+    const id = req.params.id;
+    try {
+        Matricula.destroy({
+            where: { id: id }
+        }).then(() => {
+            resp.status(200).json({
+                statusCode: 200,
+            });
+        });
 
+    } catch (e) {
+        console.log(e.toString());
+        resp.status(500).json({
+            statusCode: 500,
+            data: null,
+        });
+    }
 });
 
 
