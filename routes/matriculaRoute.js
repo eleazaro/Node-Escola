@@ -70,13 +70,14 @@ router.get("/curso/:id_curso", (req, resp) => {
 router.post("/", (req, resp) => {
     try {
         for (const key in req.body) {
-            Matricula.create(key).then(c => {
-                resp.status(200).json({
-                    statusCode: 200,
-                    data: req.body
-                });
+            Matricula.create(req.body[key]).then(c => {
+
             });
         }
+        resp.status(200).json({
+            statusCode: 200,
+
+        });
 
     } catch (e) {
         console.log(e.toString());
