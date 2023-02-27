@@ -68,19 +68,14 @@ router.get("/curso/:id_curso", (req, resp) => {
 });
 
 router.post("/", (req, resp) => {
-    Matricula.create(req.body).then(c => {
-        resp.send(c.dataValues);
-    });
-});
-
-router.delete("/:id", (req, resp) => {
     try {
-        Matricula.destroy({ where: { id: req.params.id } }).
-            then(() => {
+        for (const key in req.body) {
+            Matricula.create(key).then(c => {
                 resp.status(200).json({
                     statusCode: 200,
                 });
             });
+        }
 
     } catch (e) {
         console.log(e.toString());
@@ -89,6 +84,11 @@ router.delete("/:id", (req, resp) => {
             data: null,
         });
     }
+
+});
+
+router.delete("/:id", (req, resp) => {
+
 });
 
 
